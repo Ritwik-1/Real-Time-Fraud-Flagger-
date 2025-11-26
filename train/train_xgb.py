@@ -6,6 +6,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 from xgboost import XGBClassifier
+from xgboost.callback import EarlyStopping
 from sklearn.metrics import classification_report, roc_auc_score, precision_recall_fscore_support
 import category_encoders as ce
 import joblib
@@ -51,7 +52,7 @@ num_pipeline = Pipeline([
 # low-cardinality one-hot
 cat_low_pipeline = Pipeline([
     ("imputer", SimpleImputer(strategy="constant", fill_value="Missing")),
-    ("ohe", OneHotEncoder(handle_unknown="ignore", sparse=False))
+    ("ohe", OneHotEncoder(handle_unknown="ignore", sparse_output=False))
 ])
 
 # high-cardinality: target encoder (fit on train only)
@@ -93,7 +94,7 @@ model = XGBClassifier(
 model.fit(
     X_train_pre, y_train,
     eval_set=[(X_train_pre, y_train), (X_test_pre, y_test)],
-    early_stopping_rounds=30,
+    # callbacks=[EarlyStopping(rounds=30, save_best=True)],
     verbose=50
 )
 
