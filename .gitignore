@@ -1,0 +1,53 @@
+# Ignore the virtual environment
+ml-env/
+ml-env/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# Python cache
+*.cache/
+*.log/
+
+# Environment files that shouldn't be committed
+.env
+*.env
+
+# Data files (large or sensitive)
+data/
+datasets/
+*.csv
+*.tsv
+*.h5
+*.pkl
+*.pt
+*.npy
+*.npz
+
+# Model weights
+models/
+checkpoints/
+*.h5
+*.ckpt
+*.onnx
+
+# Temporary files
+tmp/
+temp/
