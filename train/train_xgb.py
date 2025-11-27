@@ -86,7 +86,7 @@ pos = (y_train==1).sum()
 scale_pos_weight = neg / max(1, pos)
 
 model = XGBClassifier(
-    n_estimators=100,
+    n_estimators=250,
     max_depth=4,
     learning_rate=0.05,
     # use_label_encoder=False,
@@ -124,14 +124,14 @@ print(classification_report(y_test, y_pred))
 print("ROC-AUC:", roc_auc_score(y_test, y_proba))
 
 # 11. save pipeline + encoders + model
-# joblib.dump({
-#     "preprocessor": preprocessor,
-#     "target_encoder": high_card_encoder,
-#     "model": model,
-#     "numeric_feats": numeric_feats,
-#     "cat_low_card": cat_low_card,
-#     "cat_high_card": cat_high_card
-# }, "models/fraud_xgb_pipeline.joblib")
+joblib.dump({
+    "preprocessor": preprocessor,
+    "target_encoder": high_card_encoder,
+    "model": model,
+    "numeric_feats": numeric_feats,
+    "cat_low_card": cat_low_card,
+    "cat_high_card": cat_high_card
+}, "models/fraud_xgb_pipeline.joblib")
 
 # PREPROCESSING DONE FULLY
 # [0]     validation_0-auc:0.81881        validation_1-auc:0.80939
