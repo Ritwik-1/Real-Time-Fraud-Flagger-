@@ -3,3 +3,5 @@ pandas
 scikit-learn
 category-encoders
 xgboost
+fastapi
+streamlit
