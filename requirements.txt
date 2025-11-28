@@ -5,3 +5,6 @@ category-encoders
 xgboost
 fastapi
 streamlit
+uvicorn
+kafka-python
+watchdog

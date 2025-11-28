@@ -1,28 +1,26 @@
 from fastapi import FastAPI
 import joblib
 import pandas as pd
+from app.consumer import start_consumer
 
 app = FastAPI()
 
 pipeline = joblib.load("model/fraud_xgb_pipeline.joblib")
 
-from app.consumer import start_background_consumer
-start_background_consumer()
-
 @app.post("/predict")
-def predict(transaction : dict):
+def predict(transaction: dict):
     df = pd.DataFrame([transaction])
     proba = pipeline.predict_proba(df)[0][1]
     fraud = int(proba > 0.5)
-    return {
-        "fraud": fraud,
-        "probability": proba
-    }
+    return {"fraud": fraud, "probability": proba}
 
 @app.get("/")
 def root():
-    return {"message":"Fraud API running"}
+    return {"status": "Fraud Model API Running"}
 
+def start_app():
+    print("Starting FastAPI + Kafka Consumer...")
+    start_consumer()
 
-# uvicorn app.main:app --reload
-
+if __name__ == "__main__":
+    start_app()
