@@ -1,7 +1,10 @@
-numpy
-pandas
-scikit-learn
-category-encoders
+scikit-learn==1.6.1
 xgboost
+pandas
+numpy
+category-encoders
 fastapi
 streamlit
+uvicorn
+kafka-python
+watchdog

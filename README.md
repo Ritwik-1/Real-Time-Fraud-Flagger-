@@ -4,6 +4,9 @@ A real-time fraud detection system that streams financial transactions, classifi
 
 ---
 
+## RoadBlock 
+Recall of the trained model is stuck at 0.62, I am working to improve that, any suggestions would be extremely helpful.
+
 ## Overview
 
 This project implements a production-style fraud detection pipeline. Incoming transactions are sent through Kafka, scored by a FastAPI inference service, and flagged if they are likely to be fraudulent.
@@ -62,14 +65,13 @@ DevOps:
 
 fraud-flagger/
 ├── model/
-│   ├── xgboost_model.pkl
-│   ├── preprocessing.py
+│   ├── xgboost_model.joblib
 │
 ├── app/
 │   ├── main.py               # FastAPI inference server
 │   ├── consumer.py           # Kafka consumer
 │   ├── producer.py           # Kafka producer
-│   ├── utils.py
+│   ├── date_time.py
 │
 ├── dashboard/
 │   ├── dashboard.py          # dashboard UI
@@ -79,6 +81,9 @@ fraud-flagger/
 │
 ├── train/
 │   ├── train_xgb.py
+|
+├── kafka/
+│   ├── docker_compose.yml
 │
 ├── requirements.txt
 └── README.md
@@ -87,21 +92,20 @@ fraud-flagger/
 
 ## How to Run
 
+Make a virtual enviroment using 
+
 1. Install dependencies:
    pip install -r requirements.txt
 
 2. Start Kafka (local or Docker-based)
 
-3. Run the Kafka producer:
-   python app/producer.py
-
-4. Run the FastAPI inference service:
+3. Run the FastAPI inference service:
    uvicorn app.main:app --reload
 
-5. Run the Kafka consumer:
-   python app/consumer.py
+4. Run the Kafka producer:
+   python app/producer.py
 
-6. Start the dashboard:
+5. Start the dashboard:
    streamlit run dashboard/dashboard.py
 
 ---
@@ -117,14 +121,16 @@ fraud-flagger/
 
 ## Future Improvements
 
-- Add Triton Inference Server for faster serving
-- Integrate cloud services (AWS MSK, Lambda, DynamoDB)
+- Integrate cloud services 
+- Dockerize
+- Add CI/CD
 - Add model drift detection
-- Build microservices architecture for scalability
 
 ---
 
 ## Author
 
-Your Name
+Ritwik Kashyap
+B.Tech CS graduate from IIIT Delhi (2025 Batch)
+Data Scientist at ImagingIQ Pvt. Ltd. (Gurugram)
 GitHub: https://github.com/Ritwik-1
