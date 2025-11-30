@@ -10,7 +10,8 @@ def run_producer():
     df = pd.read_csv("data/synthetic_fraud_dataset.csv")
 
     for _, row in df.iterrows():
-        producer.send("transactions", row.to_dict())
+        txn = row.to_dict()
+        producer.send("transactions", txn)
         print("Sent:", row["Transaction_ID"])
         time.sleep(0.5)
 

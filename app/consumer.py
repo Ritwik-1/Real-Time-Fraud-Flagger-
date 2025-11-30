@@ -1,5 +1,6 @@
 from kafka import KafkaConsumer, KafkaProducer
 import json
+from app.date_time import DateTimeFeatures
 import joblib
 import pandas as pd
 import threading
@@ -7,7 +8,7 @@ import threading
 def start_consumer():
     print("Starting Kafka Fraud Detector...")
 
-    pipeline = joblib.load("model/fraud_xgb_pipeline.joblib")
+    pipeline = joblib.load("model/fraud_detection_calibrated_pipeline.joblib")
 
     consumer = KafkaConsumer(
         "transactions",
@@ -26,6 +27,7 @@ def start_consumer():
             txn = msg.value
 
             df = pd.DataFrame([txn])
+
             proba = pipeline.predict_proba(df)[0][1]
             fraud = int(proba > 0.5)
 

@@ -3,9 +3,12 @@ import joblib
 import pandas as pd
 from app.consumer import start_consumer
 
+# START CONSUMER HERE
+start_consumer() 
+
 app = FastAPI()
 
-pipeline = joblib.load("model/fraud_xgb_pipeline.joblib")
+pipeline = joblib.load("model/fraud_detection_calibrated_pipeline.joblib")
 
 @app.post("/predict")
 def predict(transaction: dict):
@@ -18,9 +21,6 @@ def predict(transaction: dict):
 def root():
     return {"status": "Fraud Model API Running"}
 
-def start_app():
-    print("Starting FastAPI + Kafka Consumer...")
-    start_consumer()
-
 if __name__ == "__main__":
-    start_app()
+    import uvicorn
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
