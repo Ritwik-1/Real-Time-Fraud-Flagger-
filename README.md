@@ -134,3 +134,4 @@ Ritwik Kashyap
 B.Tech CS graduate from IIIT Delhi (2025 Batch)
 Data Scientist at ImagingIQ Pvt. Ltd. (Gurugram)
 GitHub: https://github.com/Ritwik-1
+Gmail: ritwik21485@iiitd.ac.in
