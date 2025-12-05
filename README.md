@@ -5,7 +5,7 @@ A real-time fraud detection system that streams financial transactions, classifi
 ---
 
 ## RoadBlock 
-Recall of the trained model is stuck at 0.62, I am working to improve that, any suggestions would be extremely helpful.
+Recall of the trained model is stuck at 0.84, I am working to improve that, any suggestions would be extremely helpful.
 
 ## Overview
 
