@@ -23,7 +23,7 @@ Main features:
 
 - Algorithm: XGBoost Classifier
 - Dataset: 50,000+ financial transactions
-- Accuracy: 95%
+- Recall : 0.84
 - Includes typical numerical and categorical transaction features
 
 ---
